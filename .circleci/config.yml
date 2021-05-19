@@ -32,8 +32,8 @@ workflows:
     when:
       equal: [ production, << pipeline.git.branch >> ]      
     jobs:
-       - deploy #:
-#           requires:
-#             - test-production
+       - deploy:
+           requires:
+             - test-production
 
 # comment to test production condition
