@@ -22,14 +22,16 @@ jobs:
 
 workflows:
   version: 2
-  build-test-and-deploy:
+  build-and-test:
     jobs:
       - build
       - test-production:
           requires:
             - build
-      when:
-        equal: [ production, << pipeline.git.branch >> ]
-      - deploy:
-          requires:
-            - test-production
+  deploy:
+    when:
+      equal: [ production, << pipeline.git.branch >> ]      
+    jobs:
+       - deploy #:
+#           requires:
+#             - test-production
